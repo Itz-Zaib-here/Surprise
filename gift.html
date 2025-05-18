@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+  <title>For My Love</title>
+  <style>
+      .heart {
+    position: fixed;
+    bottom: -50px;
+    font-size: 2rem;
+    animation: floatUp 6s linear forwards;
+    z-index: 999;
+    color: #ff6699;
+    pointer-events: none;
+  }
+
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(-120vh) scale(1.5);
+      opacity: 0;
+    }
+  }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #ffdbe5, #ffe4cc);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.5rem;
+      margin-top: 1rem;
+      color: #d63384;
+      animation: fadeIn 2s ease;
+      text-align: center;
+    }
+    p {
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 1rem auto;
+      animation: fadeIn 3s ease;
+      text-align: center;
+    }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .slider {
+      margin-top: 3rem;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slider img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .slider-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .slider-buttons button {
+      padding: 0.5rem 1rem;
+      background: #ff66a3;
+      border: none;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .slider-buttons button:hover {
+      background: #e60073;
+    }
+
+    /* Popup Love Letter */
+    #popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(255, 240, 245, 0.95);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #popupContent {
+      max-width: 500px;
+      background: white;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      position: relative;
+      text-align: center;
+    }
+
+    #popupContent button {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      background: #ff4d88;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+        .footer {
+      margin-top: 3rem;
+      font-style: italic;
+      color: #555;
+    }
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    #mainContent {
+      display: none;
+    }
+    #loginScreen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #ffe0ec, #ffccd5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  flex-direction: column;
+  font-family: 'Great Vibes', cursive;
+}
+
+.login-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  animation: fadeIn 1.5s ease-in;
+}
+
+.login-box input {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.login-box button {
+  margin-top: 1rem;
+  background: #ff66a3;
+  color: white;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.login-box button:hover {
+  background: #e60073;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- 🎵 Background Music -->
+  <audio autoplay loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+<div id="loginScreen">
+  <div class="login-box">
+    <h2 style="color:#b30059;">Welcome<br>let's Crack the password my Princess 👑</h2>
+    <!-- <input type="text" id="username" placeholder="Your sweet name 💕" /> -->
+    <input type="password" id="password" placeholder="Our secret password 🔐" />
+    <button onclick="validateLogin()">Let Me In 💖</button>
+  </div>
+</div>
+
+  <!-- 💌 Pop-up Love Letter -->
+  <div id="popup">
+    <div id="popupContent">
+      <button onclick="closePopup()">×</button>
+      <h2 style="color: #b30059;">My Love Note to You 💌</h2>
+      <p style="font-size: 1.1rem; color: #444;">Before you explore this little surprise, I want you to know this:  
+      You are the most beautiful part of my life, and this gift is a small reflection of how deeply I love and cherish you.  
+      Every line of code here carries my heart in it. 💖 <br>now close the dialogue to see next</p>
+    </div>
+  </div>
+
+  <!-- 🌟 Main Content -->
+  <div id="mainContent">
+  <h1>To The Love of My Life 💖<br>A little gift from your Zaib</h1>
+  <p>This isn't just a webpage—it's a piece of my heart, written in code, made with love, and delivered with a QR kiss.</p>
+
+    <div class="cards">
+      <div class="card">You make my world brighter every single day.</div>
+      <div class="card">Your smile is my favorite sight in the universe.</div>
+      <div class="card">I still get butterflies when I think of you.</div>
+      <div class="card">Thank you for being my partner, my love, my best friend.</div>
+      <div class="card">Our memories are my favorite story.</div>
+      <div class="card">You inspire me to grow and be better.</div>
+      <div class="card">Every moment with you is magic.</div>
+      <div class="card">I’m proud of everything you do.</div>
+      <div class="card">You understand me in ways no one else can.</div>
+      <div class="card">Forever isn’t long enough with you.</div>
+      <div class="card">I really love everything about you , whatever you did or wanna do with me</div>
+      <div class="card">I just want a loving and caring future with you, i want you to be with me in every situation</div>
+    </div>
+
+    <div class="slider">
+      <h2 style="text-align:center; color:#b30059;">Beautiful Moments I want to create with you 📸</h2>
+      <img id="sliderImage" src="https://i.postimg.cc/5t0WrtjZ/464907394-27361881536793372-2083387682109103063-n.jpg" alt="Memory Photo" />
+      <div class="slider-buttons">
+        <button onclick="prevImage()">← Previous</button>
+        <button onclick="nextImage()">Next →</button>
+      </div>
+    </div>
+  </div>
+
+    <div class="footer">
+    <p>With love, forever and always💕</p>
+  </div>
+
+  <script>
+function validateLogin() {
+  // const username = document.getElementById("username").value.trim();
+  const password = document.getElementById("password").value.trim().toLowerCase();
+
+  // const expectedUsername = "Mato";
+  const expectedPassword = "ijwy";
+
+  if (password === expectedPassword) {
+    // alert("That's my girl")
+    document.getElementById("loginScreen").style.display = "none";
+    document.getElementById("popup").style.display = "flex";
+  } else { if (password === "love") {
+      alert("Aww, that's sweet... but it's not our secret password 💘 Try again?");
+    } else if (password === "iloveyou") {
+      alert("That’s so cute, but it’s not quite right! 🥺💞");
+    } else if (password === "") {
+      alert("Don't be shy, enter the password! 🫣");
+    } else {
+      alert("Oops! Try again sweetheart 💔");
+    }
+  }
+}
+
+
+      function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.textContent = "💕";
+    
+    const size = Math.random() * 20 + 20;
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = size + "px";
+    
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(createHeart, 500);
+
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+    }
+
+    const images = [
+      "https://i.postimg.cc/hjWgQrZr/couple-goals-pottery-getty-images-9f4ca402119b42ec85a6bb87f33daf3f.webp",
+      "https://i.postimg.cc/GpLW6mgk/peakpx.jpg",
+      "https://i.postimg.cc/mZ7kjcQk/Francois-Chasity-Moab-Wedding-by-Zoe-with-The-Foxes-Photography-193-444a8378e11242c1897c871371c54994.webp",
+      "https://i.postimg.cc/9QQMYCPn/peakpx-1.jpg",
+      "https://i.postimg.cc/qBQHXnmp/peakpx-2.jpg",
+      "https://i.postimg.cc/YqjZ6PGx/peakpx-3.jpg",
+      "https://i.postimg.cc/vBQSc2wf/peakpx-4.jpg",
+      "https://i.postimg.cc/DzhxMpZH/peakpx-5.jpg",
+      "https://i.postimg.cc/Yjc6mjLZ/peakpx-6.jpg",
+      "https://i.postimg.cc/Lsy0gB9W/peakpx-7.jpg",
+      "https://i.postimg.cc/NFGMCtqF/haileybrandon-5319-4357blog.jpg",
+      "https://i.postimg.cc/J0SfD3q8/haileybrandon-5319-4769blog.jpg"
+    ];
+
+    let currentImage = 0;
+    const sliderImage = document.getElementById('sliderImage');
+
+    function showImage(index) {
+      sliderImage.src = images[index];
+    }
+
+    function nextImage() {
+      currentImage = (currentImage + 1) % images.length;
+      showImage(currentImage);
+    }
+
+    function prevImage() {
+      currentImage = (currentImage - 1 + images.length) % images.length;
+      showImage(currentImage);
+    }
+  </script>
+</body>
+</html>
