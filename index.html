@@ -308,7 +308,7 @@
     <!-- 💖 Love Quiz Form -->
     <section style="margin-top: 4rem; max-width: 600px; width: 100%;">
       <h2 style="text-align:center; color:#d63384;">Let Your Heart Speak 💬</h2>
-      <form action="" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+      <form onsubmit="sendMail(event)" style="display: flex; flex-direction: column; gap: 1rem;">
 
         <label>
           💞 What was your first impression of me?
@@ -348,23 +348,6 @@
       </form>
     </section>
 
-    <!-- <h1>💖 Write Your Feelings 💖</h1>
-    <form id="loveForm">
-      <label>Your Name 💕</label>
-      <input type="text" name="user_name" required />
-
-      <label>Your Nickname for Me 😘</label>
-      <input type="text" name="nickname" required />
-
-      <label>What do you love most about me? 💬</label>
-      <textarea name="love_reason" rows="4" required></textarea>
-
-      <label>Your Love Letter 💌</label>
-      <textarea name="message" rows="6" required></textarea>
-
-      <button type="submit">Send Your Feelings 💘</button>
-      <p class="success" id="statusMsg"></p>
-    </form> -->
     <div class="slider">
       <h2 style="text-align:center; color:#b30059;">Beautiful Moments I want to create with you 📸</h2>
       <img id="sliderImage" src="https://i.postimg.cc/5t0WrtjZ/464907394-27361881536793372-2083387682109103063-n.jpg"
@@ -388,51 +371,32 @@
     </div>
 
     <script>
-      function sendMail() {
-        let params = {
-          subject: "test",
-          name: document.getElementById("name").value,
-          time: "test",
-          message: document.getElementById("message").value,
-          message1: document.getElementById("message1").value,
-          message2: document.getElementById("message2").value,
-          message3: document.getElementById("message3").value,
-          email: "test@gmail.com"
-        }
-        emailjs.send("service_x9c3jut", "template_ul5slwc", params)
-        //   subject: "test",
-        //   name: document.getElementById("name").value,
-        //   time: "test",
-        //   message: document.getElementById("message").value,
-        //   message1: document.getElementById("message1").value,
-        //   message2: document.getElementById("message2").value,
-        //   message3: document.getElementById("message3").value,
-        //   email: "test@gmail.com",
-        // });
-        alert("Your message has been sent successfully! 💌");
-      }
+function sendMail(event) {
+  event.preventDefault(); // Stop the form from reloading the page
 
+  let params = {
+    subject: "From My Love Quiz 💌",
+    name: document.getElementById("name").value,
+    time: new Date().toLocaleString(),
+    message: document.getElementById("message").value,
+    message1: document.getElementById("message1").value,
+    message2: document.getElementById("message2").value,
+    message3: document.getElementById("message3").value,
+    email: "test101@gmail.com" // Optional: could be a field if you're collecting user emails
+  };
 
-      // (function () {
-      //   emailjs.init("gyvB6vB1xJsFuy8TA"); // Replace with your EmailJS public key
-      // })();
-
-      // document.getElementById("loveForm").addEventListener("submit", function (e) {
-      //   e.preventDefault();
-
-      //   emailjs.sendForm("service_x9c3jut", "template_ul5slwc", this)
-      //     .then(function () {
-      //       document.getElementById("statusMsg").innerText = "💌 Sent with love!";
-      //       document.getElementById("loveForm").reset();
-      //     }, function (error) {
-      //       document.getElementById("statusMsg").innerText = "❌ Something went wrong.";
-      //       console.log(error);
-      //     });
-      // });
+  emailjs.send("service_x9c3jut", "template_ul5slwc", params)
+    .then(() => {
+      alert("Your message has been sent successfully! 💌");
+    })
+    .catch((error) => {
+      alert("Oops! Something went wrong. 😢");
+      console.error("EmailJS Error:", error);
+    });
+}
 
       function finalMessage() {
         const finalMessage = document.getElementById("finalMessage");
-        // Hide all children of #mainContent except #finalMessage
         Array.from(document.getElementById("mainContent").children).forEach(child => {
           if (child.id !== "finalMessage") {
             child.style.display = "none";
