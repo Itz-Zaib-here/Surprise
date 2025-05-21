@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Roboto:wght@300;500&display=swap"
     rel="stylesheet">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+    (function () {
+      emailjs.init({
+        publicKey: "gyvB6vB1xJsFuy8TA",
+      });
+    })();
+  </script>
   <title>For My Love</title>
   <style>
     .heart {
@@ -244,48 +253,6 @@
       font-weight: bold;
       transition: background 0.2s;
     }
-        h1 {
-      color: #d63384;
-      margin-bottom: 20px;
-    }
-    form {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-      width: 100%;
-      max-width: 500px;
-    }
-    label {
-      display: block;
-      margin: 15px 0 5px;
-      color: #333;
-    }
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      border: 2px solid #ffb6c1;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-    button {
-      background-color: #ff69b4;
-      color: white;
-      padding: 12px 20px;
-      margin-top: 20px;
-      border: none;
-      border-radius: 12px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-    }
-    button:hover {
-      background-color: #e75480;
-    }
-    .success {
-      color: green;
-      margin-top: 10px;
-    }
   </style>
 </head>
 
@@ -338,59 +305,66 @@
       <div class="card">I just want a loving and caring future with you, i want you to be with me in every situation
       </div>
     </div>
-        <!-- 💖 Love Quiz Form -->
-<!-- <section style="margin-top: 4rem; max-width: 600px; width: 100%;">
-  <h2 style="text-align:center; color:#d63384;">Let Your Heart Speak 💬</h2>
-  <form action="https://formsubmit.co/Shahzaibshazada123@gmail.com" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
-    
-    <label>
-      💞 What was your first impression of me?
-      <textarea name="First Impression" required placeholder="Type your honest thoughts..." rows="3" style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
-    </label>
+    <!-- 💖 Love Quiz Form -->
+    <section style="margin-top: 4rem; max-width: 600px; width: 100%;">
+      <h2 style="text-align:center; color:#d63384;">Let Your Heart Speak 💬</h2>
+      <form action="" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
 
-    <label>
-      💬 When did you realize you love me?
-      <textarea name="Realization Moment" required placeholder="I want to know that moment..." rows="3" style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
-    </label>
+        <label>
+          💞 What was your first impression of me?
+          <textarea name="First Impression" id="name" placeholder="Type your honest thoughts..." rows="3"
+            style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
+        </label>
 
-    <label>
-      🌹 What do you love most about us?
-      <textarea name="Best Thing About Us" required placeholder="Be honest and sweet..." rows="3" style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
-    </label>
+        <label>
+          💬 When did you realize you love me?
+          <textarea name="Realization Moment" id="message" required placeholder="I want to know that moment..." rows="3"
+            style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
+        </label>
 
-    <label>
-      💍 Can you imagine our future together? Describe it.
-      <textarea name="Our Future Together" required placeholder="Paint me a picture of our forever..." rows="3" style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
-    </label>
+        <label>
+          🌹 What do you love most about us?
+          <textarea name="Best Thing About Us" id="message1" required placeholder="Be honest and sweet..." rows="3"
+            style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
+        </label>
 
-    <label>
-      💖 One message you want me to remember forever?
-      <textarea name="Final Love Message" required placeholder="Something special, something only for me..." rows="3" style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
-    </label>
+        <label>
+          💍 Can you imagine our future together? Describe it.
+          <textarea name="Our Future Together" id="message2" required placeholder="Paint me a picture of our forever..."
+            rows="3" style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
+        </label>
 
-    <button type="submit" style="background:#ff66a3; color:white; padding:10px 20px; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">
-      Send Your Heart 💌
-    </button>
-  </form>
-</section> -->
+        <label>
+          💖 One message you want me to remember forever?
+          <textarea name="Final Love Message" id="message3" required
+            placeholder="Something special, something only for me..." rows="3"
+            style="width: 100%; padding: 10px; border-radius: 10px;"></textarea>
+        </label>
 
-<h1>💖 Write Your Feelings 💖</h1>
-  <form id="loveForm">
-    <label>Your Name 💕</label>
-    <input type="text" name="user_name" required />
+        <button type="submit" onclick="sendMail()"
+          style="background:#ff66a3; color:white; padding:10px 20px; border:none; border-radius:10px; font-weight:bold; cursor:pointer;">
+          Send Your Heart 💌
+        </button>
+      </form>
+    </section>
 
-    <label>Your Nickname for Me 😘</label>
-    <input type="text" name="nickname" required />
+    <!-- <h1>💖 Write Your Feelings 💖</h1>
+    <form id="loveForm">
+      <label>Your Name 💕</label>
+      <input type="text" name="user_name" required />
 
-    <label>What do you love most about me? 💬</label>
-    <textarea name="love_reason" rows="4" required></textarea>
+      <label>Your Nickname for Me 😘</label>
+      <input type="text" name="nickname" required />
 
-    <label>Your Love Letter 💌</label>
-    <textarea name="message" rows="6" required></textarea>
+      <label>What do you love most about me? 💬</label>
+      <textarea name="love_reason" rows="4" required></textarea>
 
-    <button type="submit">Send Your Feelings 💘</button>
-    <p class="success" id="statusMsg"></p>
-  </form>
+      <label>Your Love Letter 💌</label>
+      <textarea name="message" rows="6" required></textarea>
+
+      <button type="submit">Send Your Feelings 💘</button>
+      <p class="success" id="statusMsg"></p>
+    </form> -->
     <div class="slider">
       <h2 style="text-align:center; color:#b30059;">Beautiful Moments I want to create with you 📸</h2>
       <img id="sliderImage" src="https://i.postimg.cc/5t0WrtjZ/464907394-27361881536793372-2083387682109103063-n.jpg"
@@ -414,22 +388,47 @@
     </div>
 
     <script>
-(function(){
-      emailjs.init("gyvB6vB1xJsFuy8TA"); // Replace with your EmailJS public key
-    })();
+      function sendMail() {
+        let params = {
+          subject: "test",
+          name: document.getElementById("name").value,
+          time: "test",
+          message: document.getElementById("message").value,
+          message1: document.getElementById("message1").value,
+          message2: document.getElementById("message2").value,
+          message3: document.getElementById("message3").value,
+          email: "test@gmail.com"
+        }
+        emailjs.send("service_x9c3jut", "template_ul5slwc", params)
+        //   subject: "test",
+        //   name: document.getElementById("name").value,
+        //   time: "test",
+        //   message: document.getElementById("message").value,
+        //   message1: document.getElementById("message1").value,
+        //   message2: document.getElementById("message2").value,
+        //   message3: document.getElementById("message3").value,
+        //   email: "test@gmail.com",
+        // });
+        alert("Your message has been sent successfully! 💌");
+      }
 
-    document.getElementById("loveForm").addEventListener("submit", function(e) {
-      e.preventDefault();
 
-      emailjs.sendForm("service_x9c3jut", "template_ul5slwc", this)
-        .then(function() {
-          document.getElementById("statusMsg").innerText = "💌 Sent with love!";
-          document.getElementById("loveForm").reset();
-        }, function(error) {
-          document.getElementById("statusMsg").innerText = "❌ Something went wrong.";
-          console.log(error);
-        });
-    });
+      // (function () {
+      //   emailjs.init("gyvB6vB1xJsFuy8TA"); // Replace with your EmailJS public key
+      // })();
+
+      // document.getElementById("loveForm").addEventListener("submit", function (e) {
+      //   e.preventDefault();
+
+      //   emailjs.sendForm("service_x9c3jut", "template_ul5slwc", this)
+      //     .then(function () {
+      //       document.getElementById("statusMsg").innerText = "💌 Sent with love!";
+      //       document.getElementById("loveForm").reset();
+      //     }, function (error) {
+      //       document.getElementById("statusMsg").innerText = "❌ Something went wrong.";
+      //       console.log(error);
+      //     });
+      // });
 
       function finalMessage() {
         const finalMessage = document.getElementById("finalMessage");
