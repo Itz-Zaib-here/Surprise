@@ -371,29 +371,34 @@
     </div>
 
     <script>
-function sendMail(event) {
-  event.preventDefault(); // Stop the form from reloading the page
+      function sendMail(event) {
+        event.preventDefault(); // Stop the form from reloading the page
 
-  let params = {
-    subject: "From My Love Quiz 💌",
-    name: document.getElementById("name").value,
-    time: new Date().toLocaleString(),
-    message: document.getElementById("message").value,
-    message1: document.getElementById("message1").value,
-    message2: document.getElementById("message2").value,
-    message3: document.getElementById("message3").value,
-    email: "test101@gmail.com" // Optional: could be a field if you're collecting user emails
-  };
+        let params = {
+          subject: "From My Love Quiz 💌",
+          name: document.getElementById("name").value,
+          time: new Date().toLocaleString(),
+          message: document.getElementById("message").value,
+          message1: document.getElementById("message1").value,
+          message2: document.getElementById("message2").value,
+          message3: document.getElementById("message3").value,
+          email: "test101@gmail.com" // Optional: could be a field if you're collecting user emails
+        };
 
-  emailjs.send("service_x9c3jut", "template_ul5slwc", params)
-    .then(() => {
-      alert("Your message has been sent successfully! 💌");
-    })
-    .catch((error) => {
-      alert("Oops! Something went wrong. 😢");
-      console.error("EmailJS Error:", error);
-    });
-}
+        emailjs.send("service_x9c3jut", "template_ul5slwc", params)
+          .then(() => {
+            alert("Your message has been sent successfully! 💌");
+            document.getElementById("name").value = "";
+            document.getElementById("message").value = "";
+            document.getElementById("message1").value = "";
+            document.getElementById("message2").value = "";
+            document.getElementById("message3").value = "";
+          })
+          .catch((error) => {
+            alert("Oops! Something went wrong. 😢");
+            console.error("EmailJS Error:", error);
+          });
+      }
 
       function finalMessage() {
         const finalMessage = document.getElementById("finalMessage");
@@ -487,6 +492,13 @@ function sendMail(event) {
         currentImage = (currentImage - 1 + images.length) % images.length;
         showImage(currentImage);
       }
+      document.addEventListener("click", () => {
+        const music = document.getElementById("bgMusic");
+        if (music.paused) {
+          music.play().catch(() => { });
+        }
+      });
+
     </script>
 </body>
 
