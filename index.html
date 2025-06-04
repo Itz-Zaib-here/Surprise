@@ -269,6 +269,9 @@
       <!-- <input type="text" id="username" placeholder="Your sweet name 💕" /> -->
       <input type="password" id="password" placeholder="Our secret password 🔐" autocomplete="off" />
       <button onclick="validateLogin()">Enter in my heart 💖</button>
+      <div id="hintButton" style="display:none; margin-top:10px;">
+        <span id="hintText" style="color: #e91e63; font-weight: bold;"></span>
+      </div>
     </div>
   </div>
 
@@ -409,10 +412,11 @@
         });
         finalMessage.style.display = "block";
       }
+      let attempts = 0;
+      const expectedPassword = "ijwy";
       function validateLogin() {
         const password = document.getElementById("password").value.trim().toLowerCase();
 
-        const expectedPassword = "ijwy";
 
         if (password === expectedPassword) {
           alert("That's my girl now hit the ok and enter in my heart")
@@ -431,7 +435,23 @@
             alert("Oops! Try again sweetheart 💔");
           }
         }
+
+        attempts++;
+        showHintIfNeeded();
       }
+      function showHintIfNeeded() {
+        const hintButton = document.getElementById("hintButton");
+        const hintText = document.getElementById("hintText");
+
+        if (attempts % 3 === 0 && attempts <= expectedPassword.length * 3) {
+          const charsToShow = Math.floor(attempts / 3);
+          const revealed = expectedPassword.substring(0, charsToShow).split('').join(' ');
+          const hidden = "* ".repeat(expectedPassword.length - charsToShow).trim();
+          hintText.textContent = `Hint: ${revealed} ${hidden}`;
+          hintButton.style.display = "block";
+        }
+      }
+
 
       document.getElementById("bgMusic").play().catch(() => { });
 
